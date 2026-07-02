@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.DS_Store
+*.tif
+
+# Source assets (already in public/)
+/videos/
+/SESION DE FOTOS BLUE LAGOON/
+/MASTERPLAN BLUE LAGOON/
+/renders antiguos /
+Blue Lagoon .docx
+Brochure Blue Lagoon_español_ 2026 (1).pdf
+guia-desarrollo.md
+README.md
+
+# Video >100MB (GitHub limit)
+public/videos/Video pantalla - Blue lagoon - FINAL (1).mp4
