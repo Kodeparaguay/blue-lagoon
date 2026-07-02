@@ -1,14 +1,8 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
 import { useRef } from 'react'
 import { FaExpand } from 'react-icons/fa'
-
-const stats = [
-  { number: 86, suffix: ' ha', label: 'desarrollo', prefix: '' },
-  { number: 493, suffix: '', label: 'lotes', prefix: '' },
-  { number: 4, suffix: ' ha', label: 'laguna cristalina', prefix: '' },
-  { number: null, text: 'Frontera', label: 'con Brasil', prefix: '' },
-]
 
 function AnimatedCounter({ from = 0, to, duration = 2, suffix = '', prefix = '' }) {
   const ref = useRef(null)
@@ -42,8 +36,18 @@ const sectionVariants = {
 }
 
 export default function Proyecto() {
+  const { t } = useTranslation()
   const sectionRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, margin: '-100px' })
+
+  const statsLabels = t('proyecto.stats', { returnObjects: true })
+
+  const stats = [
+    { number: 86, suffix: ' ha', label: statsLabels[0], prefix: '' },
+    { number: 493, suffix: '', label: statsLabels[1], prefix: '' },
+    { number: 4, suffix: ' ha', label: statsLabels[2], prefix: '' },
+    { number: null, text: t('ubicacion.frontera', 'Frontera'), label: statsLabels[3], prefix: '' },
+  ]
 
   return (
     <section id="el-proyecto" className="bg-crystal py-20 md:py-32 relative overflow-hidden">
@@ -60,24 +64,16 @@ export default function Proyecto() {
           <div className="text-center mb-4">
             <div className="inline-block w-16 h-0.5 bg-gradient-to-r from-transparent via-lagoon to-transparent mb-6" />
             <h2 className="font-display text-lagoon text-4xl md:text-5xl font-bold mb-8">
-              Blue Lagoon
+              {t('proyecto.title')}
             </h2>
           </div>
 
           <p className="font-body text-gray-700 leading-relaxed text-base md:text-lg max-w-4xl mx-auto text-center space-y-4">
             <span className="block">
-              Una experiencia residencial única donde la naturaleza, el diseño y el
-              bienestar se integran para crear un estilo de vida incomparable.
+              {t('proyecto.body1')}
             </span>
             <span className="block mt-4 border-l-4 border-lagoon/30 pl-4 md:pl-6 text-left inline-block">
-              Ubicado en Pedro Juan Caballero, en una posición estratégica sobre la
-              frontera con Brasil, Blue Lagoon es un desarrollo residencial premium
-              concebido para quienes buscan exclusividad, privacidad y una inversión
-              con alto potencial de valorización. Con 86 hectáreas de desarrollo
-              planificado y 493 lotes, el proyecto combina una impresionante laguna
-              cristalina de 4 hectáreas, playas de arena blanca, infraestructura de
-              primer nivel y una selección de amenities diseñadas para elevar cada
-              momento.
+              {t('proyecto.body2')}
             </span>
           </p>
 
@@ -142,7 +138,7 @@ export default function Proyecto() {
           >
             <img
               src="/masterplan/masterplan-principal.webp"
-              alt="Masterplan Blue Lagoon"
+              alt={t('proyecto.masterplan')}
               className="w-full h-72 md:h-[30rem] object-contain bg-white/50 backdrop-blur-sm rounded-2xl shadow-premium-lg border border-white/50"
               loading="lazy"
             />
@@ -159,7 +155,7 @@ export default function Proyecto() {
                 }}
               >
                 <span className="font-display text-deep-navy font-semibold text-base">
-                  Masterplan Blue Lagoon
+                  {t('proyecto.masterplan')}
                 </span>
                 <motion.a
                   href="/masterplan/masterplan-principal.webp"
@@ -168,10 +164,10 @@ export default function Proyecto() {
                   className="inline-flex items-center gap-2 bg-lagoon text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-lagoon/90 transition-colors shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lagoon focus-visible:ring-offset-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  aria-label="Ver Masterplan en tamaño completo"
+                  aria-label={t('proyecto.verCompleto')}
                 >
                   <FaExpand size={14} />
-                  Ver Completo
+                  {t('proyecto.verCompleto')}
                 </motion.a>
               </div>
             </div>

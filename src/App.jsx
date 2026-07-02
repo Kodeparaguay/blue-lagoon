@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Routes, Route } from 'react-router-dom'
 import { FaArrowUp } from 'react-icons/fa'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -8,9 +9,11 @@ import Laguna from './components/Laguna'
 import Lifestyle from './components/Lifestyle'
 import Deportes from './components/Deportes'
 import Brochure from './components/Brochure'
+import Noticias from './components/Noticias'
 import Galeria from './components/Galeria'
 import Ubicacion from './components/Ubicacion'
 import Footer from './components/Footer'
+import NoticiaDetallePage from './components/NoticiaDetallePage'
 
 function BackToTop() {
   const [visible, setVisible] = useState(false)
@@ -56,18 +59,30 @@ function BackToTop() {
   )
 }
 
-function App() {
+function LandingPage() {
   return (
     <>
-      <Nav />
       <Hero />
       <Proyecto />
       <Laguna />
       <Lifestyle />
       <Deportes />
       <Brochure />
+      <Noticias />
       <Galeria />
       <Ubicacion />
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/noticias/:id" element={<NoticiaDetallePage />} />
+      </Routes>
       <Footer />
       <BackToTop />
     </>

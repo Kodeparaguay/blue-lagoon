@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { FaChevronDown, FaArrowRight } from 'react-icons/fa'
 
@@ -21,6 +22,7 @@ const fadeUp = {
 }
 
 export default function Hero() {
+  const { t } = useTranslation()
   const videoRef = useRef(null)
 
   function handleVideoError() {
@@ -165,14 +167,14 @@ export default function Hero() {
           className="font-display text-white text-6xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-tight"
           variants={fadeUp}
         >
-          Blue Lagoon
+          {t('hero.title')}
         </motion.h1>
 
         <motion.p
           className="font-display italic text-crystal text-lg sm:text-xl md:text-2xl mb-10 tracking-wide"
           variants={fadeUp}
         >
-          Momentos Únicos
+          {t('brand.slogan')}
         </motion.p>
 
         <motion.a
@@ -181,9 +183,9 @@ export default function Hero() {
           variants={fadeUp}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
-          aria-label="Descubrí Blue Lagoon"
+          aria-label={t('hero.cta')}
         >
-          Descubrí Blue Lagoon
+          {t('hero.cta')}
           <FaArrowRight size={16} />
         </motion.a>
       </motion.div>

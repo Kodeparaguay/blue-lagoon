@@ -1,15 +1,9 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { FaTableTennis, FaFutbol, FaDumbbell, FaWalking, FaBicycle } from 'react-icons/fa'
 
-const sports = [
-  { Icon: FaTableTennis, text: 'Canchas de pádel' },
-  { Icon: FaTableTennis, text: 'Canchas de tenis' },
-  { Icon: FaFutbol, text: 'Cancha de fútbol' },
-  { Icon: FaDumbbell, text: 'Gimnasio equipado' },
-  { Icon: FaWalking, text: 'Senderos peatonales' },
-  { Icon: FaBicycle, text: 'Bicisendas' },
-]
+const sportIcons = [FaTableTennis, FaTableTennis, FaFutbol, FaDumbbell, FaWalking, FaBicycle]
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -59,6 +53,8 @@ function WaveDivider() {
 }
 
 export default function Deportes() {
+  const { t } = useTranslation()
+  const sports = t('deportes.sports', { returnObjects: true })
   const sectionRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, margin: '-100px' })
 
@@ -77,10 +73,10 @@ export default function Deportes() {
           >
             <div className="inline-block w-16 h-0.5 bg-gradient-to-r from-transparent via-tropical to-transparent mb-6 mx-auto block" />
             <h2 className="font-display text-lagoon text-4xl md:text-5xl font-bold text-center mb-4">
-              Deportes & Recreación
+              {t('deportes.title')}
             </h2>
             <p className="font-body text-gray-500 text-lg text-center mb-14 tracking-wide">
-              Actividad para todos los niveles.
+              {t('deportes.body')}
             </p>
 
             {/* Premium sport cards */}
@@ -90,58 +86,61 @@ export default function Deportes() {
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
             >
-              {sports.map((sport) => (
-                <motion.div
-                  key={sport.text}
-                  className="relative rounded-2xl p-6 md:p-8 flex items-center gap-5 group cursor-default"
-                  variants={cardVariant}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: 'spring', stiffness: 250, damping: 20 }}
-                  style={{
-                    background: 'rgba(255,255,255,0.9)',
-                    backdropFilter: 'blur(16px)',
-                    WebkitBackdropFilter: 'blur(16px)',
-                    border: '1px solid rgba(255,255,255,0.7)',
-                  }}
-                >
-                  {/* Hover gradient overlay */}
-                  <div
-                    className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              {sports.map((sport, i) => {
+                const Icon = sportIcons[i]
+                return (
+                  <motion.div
+                    key={sport.text}
+                    className="relative rounded-2xl p-6 md:p-8 flex items-center gap-5 group cursor-default"
+                    variants={cardVariant}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ type: 'spring', stiffness: 250, damping: 20 }}
                     style={{
-                      background:
-                        'linear-gradient(135deg, rgba(45,140,74,0.12), rgba(14,165,184,0.08), transparent)',
-                      borderRadius: '1rem',
-                    }}
-                  />
-
-                  {/* Colored shadow on hover */}
-                  <div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
-                    style={{
-                      boxShadow:
-                        '0 8px 32px rgba(45,140,74,0.2), 0 2px 8px rgba(45,140,74,0.1)',
-                    }}
-                  />
-
-                  {/* Icon container with gradient */}
-                  <div
-                    className="rounded-xl p-3.5 flex-shrink-0"
-                    style={{
-                      background:
-                        'linear-gradient(135deg, rgba(45,140,74,0.15), rgba(45,140,74,0.08))',
-                      border: '1px solid rgba(45,140,74,0.12)',
+                      background: 'rgba(255,255,255,0.9)',
+                      backdropFilter: 'blur(16px)',
+                      WebkitBackdropFilter: 'blur(16px)',
+                      border: '1px solid rgba(255,255,255,0.7)',
                     }}
                   >
-                    <sport.Icon className="text-tropical" size={26} aria-hidden="true" />
-                  </div>
+                    {/* Hover gradient overlay */}
+                    <div
+                      className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background:
+                          'linear-gradient(135deg, rgba(45,140,74,0.12), rgba(14,165,184,0.08), transparent)',
+                        borderRadius: '1rem',
+                      }}
+                    />
 
-                  <div className="relative z-10">
-                    <span className="font-body text-gray-800 text-base md:text-lg font-medium leading-snug">
-                      {sport.text}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
+                    {/* Colored shadow on hover */}
+                    <div
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                      style={{
+                        boxShadow:
+                          '0 8px 32px rgba(45,140,74,0.2), 0 2px 8px rgba(45,140,74,0.1)',
+                      }}
+                    />
+
+                    {/* Icon container with gradient */}
+                    <div
+                      className="rounded-xl p-3.5 flex-shrink-0"
+                      style={{
+                        background:
+                          'linear-gradient(135deg, rgba(45,140,74,0.15), rgba(45,140,74,0.08))',
+                        border: '1px solid rgba(45,140,74,0.12)',
+                      }}
+                    >
+                      <Icon className="text-tropical" size={26} aria-hidden="true" />
+                    </div>
+
+                    <div className="relative z-10">
+                      <span className="font-body text-gray-800 text-base md:text-lg font-medium leading-snug">
+                        {sport.text}
+                      </span>
+                    </div>
+                  </motion.div>
+                )
+              })}
             </motion.div>
           </motion.div>
         </div>

@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { FaMapMarkerAlt, FaFlag, FaChartLine } from 'react-icons/fa'
 
 const badges = [
@@ -18,6 +19,7 @@ const sectionVariants = {
 }
 
 export default function Ubicacion() {
+  const { t } = useTranslation()
   const sectionRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, margin: '-100px' })
 
@@ -40,14 +42,13 @@ export default function Ubicacion() {
         >
           <div className="inline-block w-16 h-0.5 bg-gradient-to-r from-transparent via-lagoon to-transparent mb-6 mx-auto block" />
           <h2 className="font-display text-lagoon text-4xl md:text-5xl font-bold text-center mb-4">
-            Ubicación
+            {t('ubicacion.title')}
           </h2>
           <p className="font-body font-semibold text-deep-navy text-lg md:text-xl text-center tracking-widest mb-4">
-            PEDRO JUAN CABALLERO · FRONTERA CON BRASIL
+            {t('ubicacion.address')}
           </p>
           <p className="font-body text-gray-500 text-center max-w-2xl mx-auto mb-14">
-            Una ubicación estratégica sobre la frontera con Brasil, con alto
-            potencial de valorización inmobiliaria.
+            {t('ubicacion.desc')}
           </p>
 
           {/* Two-column layout */}

@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import LanguageSwitcher from './LanguageSwitcher'
 
-const links = [
-  { label: 'Proyecto', href: '#el-proyecto' },
-  { label: 'Laguna', href: '#la-laguna' },
-  { label: 'Lifestyle', href: '#lifestyle' },
-  { label: 'Deportes', href: '#deportes' },
-  { label: 'Brochure', href: '#brochure' },
-  { label: 'Galería', href: '#galeria' },
-  { label: 'Ubicación', href: '#ubicacion' },
+const sectionIds = [
+  'el-proyecto',
+  'la-laguna',
+  'lifestyle',
+  'deportes',
+  'brochure',
+  'galeria',
+  'ubicacion',
+  'noticias',
 ]
 
 const mobileMenuVariants = {
@@ -35,9 +39,23 @@ const mobileItemVariants = {
 }
 
 export default function Nav() {
+  const { t } = useTranslation()
+  const location = useLocation()
+  const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+
+  const links = [
+    { label: t('nav.proyecto'), href: '#el-proyecto' },
+    { label: t('nav.laguna'), href: '#la-laguna' },
+    { label: t('nav.lifestyle'), href: '#lifestyle' },
+    { label: t('nav.deportes'), href: '#deportes' },
+    { label: t('nav.brochure'), href: '#brochure' },
+    { label: t('nav.galeria'), href: '#galeria' },
+    { label: t('nav.ubicacion'), href: '#ubicacion' },
+    { label: t('nav.noticias'), href: '#noticias' },
+  ]
 
   useEffect(() => {
     function handleScroll() {
@@ -48,7 +66,6 @@ export default function Nav() {
   }, [])
 
   useEffect(() => {
-    const sectionIds = links.map((l) => l.href.replace('#', ''))
     const observers = []
 
     sectionIds.forEach((id) => {
@@ -69,8 +86,20 @@ export default function Nav() {
     return () => observers.forEach((o) => o.disconnect())
   }, [])
 
-  function handleLinkClick() {
+  function handleClick(e, href) {
+    e.preventDefault()
     setMenuOpen(false)
+
+    if (location.pathname !== '/') {
+      navigate('/' + href)
+      return
+    }
+
+    const id = href.replace('#', '')
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   return (
@@ -82,7 +111,7 @@ export default function Nav() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-[4.5rem]">
-        <a href="#" className="flex-shrink-0">
+        <a href="#" className="flex-shrink-0" onClick={(e) => handleClick(e, '#')}>
           <img
             src="/logos/png white-11.png"
             alt="Blue Lagoon"
@@ -90,42 +119,45 @@ export default function Nav() {
           />
         </a>
 
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-6 lg:gap-8">
-          {links.map((link) => {
-            const sectionId = link.href.replace('#', '')
-            const isActive = activeSection === sectionId
-            return (
-              <li key={link.href} className="relative">
-                <a
-                  href={link.href}
-                  className={`text-sm lg:text-base font-medium tracking-wide transition-colors duration-300 ${
-                    isActive
-                      ? 'text-white'
-                      : 'text-white/75 hover:text-white'
-                  }`}
-                  aria-label={`Ir a ${link.label}`}
-                >
-                  {link.label}
-                  {/* Active indicator dot */}
-                  {isActive && (
-                    <motion.span
-                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white"
-                      layoutId="navDot"
-                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                    />
-                  )}
-                </a>
-              </li>
-            )
-          })}
-        </ul>
+        {/* Desktop links + Language Switcher */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          <ul className="flex items-center gap-6 lg:gap-8">
+            {links.map((link) => {
+              const sectionId = link.href.replace('#', '')
+              const isActive = activeSection === sectionId
+              return (
+                <li key={link.href} className="relative">
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleClick(e, link.href)}
+                    className={`text-sm lg:text-base font-medium tracking-wide transition-colors duration-300 ${
+                      isActive
+                        ? 'text-white'
+                        : 'text-white/75 hover:text-white'
+                    }`}
+                    aria-label={link.label}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.span
+                        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white"
+                        layoutId="navDot"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+          <LanguageSwitcher />
+        </div>
 
         {/* Hamburger button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden p-2 text-white rounded-lg hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-label={menuOpen ? t('nav.cerrarMenu') : t('nav.abrirMenu')}
         >
           {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
         </button>
@@ -155,13 +187,23 @@ export default function Nav() {
                 >
                   <a
                     href={link.href}
-                    onClick={handleLinkClick}
+                    onClick={(e) => handleClick(e, link.href)}
                     className="block text-white/85 hover:text-white text-base font-medium tracking-wide transition-colors py-1"
                   >
                     {link.label}
                   </a>
                 </motion.li>
               ))}
+              <motion.li
+                variants={mobileItemVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+                custom={links.length}
+                className="pt-2"
+              >
+                <LanguageSwitcher />
+              </motion.li>
             </ul>
           </motion.div>
         )}

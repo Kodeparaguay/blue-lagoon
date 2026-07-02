@@ -1,8 +1,10 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { FaDownload, FaFilePdf } from 'react-icons/fa'
 
 export default function Brochure() {
+  const { t } = useTranslation()
   const sectionRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, margin: '-80px' })
 
@@ -43,11 +45,10 @@ export default function Brochure() {
               transition={{ delay: 0.3 }}
             >
               <h3 className="font-display text-white text-xl md:text-2xl font-semibold mb-1">
-                Brochure Blue Lagoon
+                {t('brochure.title')}
               </h3>
               <p className="font-body text-white/70 text-sm md:text-base max-w-lg">
-                Toda la información del proyecto, amenities, masterplan y más en
-                un solo documento.
+                {t('brochure.body')}
               </p>
             </motion.div>
 
@@ -63,7 +64,7 @@ export default function Brochure() {
               transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
             >
               <FaDownload size={16} />
-              Descargar
+              {t('brochure.cta')}
             </motion.a>
           </div>
         </motion.div>

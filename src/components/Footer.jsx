@@ -1,15 +1,7 @@
+import { useTranslation } from 'react-i18next'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FaInstagram, FaFacebook, FaWhatsapp, FaDownload } from 'react-icons/fa'
-
-const links = [
-  { label: 'Proyecto', href: '#el-proyecto' },
-  { label: 'Laguna', href: '#la-laguna' },
-  { label: 'Lifestyle', href: '#lifestyle' },
-  { label: 'Deportes', href: '#deportes' },
-  { label: 'Brochure', href: '#brochure' },
-  { label: 'Galería', href: '#galeria' },
-  { label: 'Ubicación', href: '#ubicacion' },
-]
 
 const socialLinks = [
   { Icon: FaInstagram, href: '#', label: 'Instagram' },
@@ -23,6 +15,34 @@ const linkVariants = {
 }
 
 export default function Footer() {
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const links = [
+    { label: t('nav.proyecto'), href: '#el-proyecto' },
+    { label: t('nav.laguna'), href: '#la-laguna' },
+    { label: t('nav.lifestyle'), href: '#lifestyle' },
+    { label: t('nav.deportes'), href: '#deportes' },
+    { label: t('nav.brochure'), href: '#brochure' },
+    { label: t('nav.galeria'), href: '#galeria' },
+    { label: t('nav.ubicacion'), href: '#ubicacion' },
+    { label: t('nav.noticias'), href: '#noticias' },
+  ]
+
+  function handleClick(e, href) {
+    e.preventDefault()
+    if (location.pathname !== '/') {
+      navigate('/' + href)
+      return
+    }
+    const id = href.replace('#', '')
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <footer className="bg-deep-navy pt-20 md:pt-24 relative">
       {/* Wave divider at top */}
@@ -57,7 +77,7 @@ export default function Footer() {
           />
 
           <p className="font-display italic text-crystal mb-8 text-lg md:text-xl tracking-wide">
-            Momentos Únicos
+            {t('brand.slogan')}
           </p>
 
           {/* Division line */}
@@ -86,6 +106,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleClick(e, link.href)}
                 className="relative text-white/60 hover:text-white transition-colors px-3 py-1.5 text-sm md:text-base font-body group"
               >
                 {link.label}
@@ -109,14 +130,14 @@ export default function Footer() {
               whileTap={{ scale: 0.97 }}
             >
               <FaDownload size={14} />
-              Descargar Brochure
+              {t('footer.downloadBrochure')}
             </motion.a>
           </div>
 
           <div className="border-t border-white/10 my-6 max-w-xs mx-auto" />
 
           <p className="text-white/40 text-sm font-body pb-8 tracking-wide">
-            &copy; 2026 Blue Lagoon. Todos los derechos reservados.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

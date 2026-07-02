@@ -1,15 +1,9 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, useInView } from 'framer-motion'
 import { FaUmbrellaBeach, FaCocktail, FaBuilding, FaLeaf, FaUsers, FaSwimmer } from 'react-icons/fa'
 
-const amenities = [
-  { Icon: FaUmbrellaBeach, text: 'Playa de arena blanca' },
-  { Icon: FaCocktail, text: 'Bar de playa' },
-  { Icon: FaBuilding, text: 'Club House' },
-  { Icon: FaLeaf, text: 'Áreas de descanso y recreación' },
-  { Icon: FaUsers, text: 'Espacios para disfrutar en familia' },
-  { Icon: FaSwimmer, text: 'Piscina' },
-]
+const amenityIcons = [FaUmbrellaBeach, FaCocktail, FaBuilding, FaLeaf, FaUsers, FaSwimmer]
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -59,6 +53,8 @@ function WaveDivider() {
 }
 
 export default function Lifestyle() {
+  const { t } = useTranslation()
+  const amenities = t('lifestyle.amenities', { returnObjects: true })
   const sectionRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, margin: '-100px' })
 
@@ -83,10 +79,10 @@ export default function Lifestyle() {
           >
             <div className="inline-block w-16 h-0.5 bg-gradient-to-r from-transparent via-lagoon to-transparent mb-6 mx-auto block" />
             <h2 className="font-display text-lagoon text-4xl md:text-5xl font-bold text-center mb-4">
-              Lifestyle & Bienestar
+              {t('lifestyle.title')}
             </h2>
             <p className="font-body text-gray-500 text-lg text-center mb-14 tracking-wide">
-              Espacios diseñados para el disfrute diario.
+              {t('lifestyle.body')}
             </p>
 
             {/* Premium amenity cards */}
@@ -96,58 +92,61 @@ export default function Lifestyle() {
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
             >
-              {amenities.map((amenity) => (
-                <motion.div
-                  key={amenity.text}
-                  className="relative rounded-2xl p-6 md:p-8 flex items-center gap-5 group cursor-default"
-                  variants={cardVariant}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: 'spring', stiffness: 250, damping: 20 }}
-                  style={{
-                    background: 'rgba(255,255,255,0.9)',
-                    backdropFilter: 'blur(16px)',
-                    WebkitBackdropFilter: 'blur(16px)',
-                    border: '1px solid rgba(255,255,255,0.7)',
-                  }}
-                >
-                  {/* Gradient border via pseudo-element style — using inset box-shadow for effect */}
-                  <div
-                    className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              {amenities.map((amenity, i) => {
+                const Icon = amenityIcons[i]
+                return (
+                  <motion.div
+                    key={amenity.text}
+                    className="relative rounded-2xl p-6 md:p-8 flex items-center gap-5 group cursor-default"
+                    variants={cardVariant}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ type: 'spring', stiffness: 250, damping: 20 }}
                     style={{
-                      background:
-                        'linear-gradient(135deg, rgba(14,165,184,0.15), rgba(45,140,74,0.1), transparent)',
-                      borderRadius: '1rem',
-                    }}
-                  />
-
-                  {/* Colored shadow on hover */}
-                  <div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
-                    style={{
-                      boxShadow:
-                        '0 8px 32px rgba(14,165,184,0.2), 0 2px 8px rgba(14,165,184,0.1)',
-                    }}
-                  />
-
-                  {/* Icon container with gradient */}
-                  <div
-                    className="rounded-xl p-3.5 flex-shrink-0"
-                    style={{
-                      background:
-                        'linear-gradient(135deg, rgba(14,165,184,0.15), rgba(14,165,184,0.08))',
-                      border: '1px solid rgba(14,165,184,0.12)',
+                      background: 'rgba(255,255,255,0.9)',
+                      backdropFilter: 'blur(16px)',
+                      WebkitBackdropFilter: 'blur(16px)',
+                      border: '1px solid rgba(255,255,255,0.7)',
                     }}
                   >
-                    <amenity.Icon className="text-lagoon" size={26} aria-hidden="true" />
-                  </div>
+                    {/* Gradient border via pseudo-element style — using inset box-shadow for effect */}
+                    <div
+                      className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background:
+                          'linear-gradient(135deg, rgba(14,165,184,0.15), rgba(45,140,74,0.1), transparent)',
+                        borderRadius: '1rem',
+                      }}
+                    />
 
-                  <div className="relative z-10">
-                    <span className="font-body text-gray-800 text-base md:text-lg font-medium leading-snug">
-                      {amenity.text}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
+                    {/* Colored shadow on hover */}
+                    <div
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                      style={{
+                        boxShadow:
+                          '0 8px 32px rgba(14,165,184,0.2), 0 2px 8px rgba(14,165,184,0.1)',
+                      }}
+                    />
+
+                    {/* Icon container with gradient */}
+                    <div
+                      className="rounded-xl p-3.5 flex-shrink-0"
+                      style={{
+                        background:
+                          'linear-gradient(135deg, rgba(14,165,184,0.15), rgba(14,165,184,0.08))',
+                        border: '1px solid rgba(14,165,184,0.12)',
+                      }}
+                    >
+                      <Icon className="text-lagoon" size={26} aria-hidden="true" />
+                    </div>
+
+                    <div className="relative z-10">
+                      <span className="font-body text-gray-800 text-base md:text-lg font-medium leading-snug">
+                        {amenity.text}
+                      </span>
+                    </div>
+                  </motion.div>
+                )
+              })}
             </motion.div>
           </motion.div>
 

@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import Lightbox from './Lightbox'
 
 // Filtered non-x variants only
@@ -54,6 +55,7 @@ const imageVariant = {
 }
 
 export default function Galeria() {
+  const { t } = useTranslation()
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -96,7 +98,7 @@ export default function Galeria() {
         <div className="flex items-center justify-center gap-4 mb-14">
           <div className="h-px w-12 bg-white/20" />
           <h2 className="font-display text-white text-4xl md:text-5xl font-bold text-center">
-            Galería
+            {t('galeria.title')}
           </h2>
           <div className="h-px w-12 bg-white/20" />
         </div>

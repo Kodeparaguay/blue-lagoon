@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 
 const lagoonPhotos = [
@@ -36,6 +37,7 @@ const imageVariant = {
 }
 
 export default function Laguna() {
+  const { t } = useTranslation()
   const sectionRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, margin: '-100px' })
   const parallaxRef = useRef(null)
@@ -71,16 +73,13 @@ export default function Laguna() {
             {/* Left: text */}
             <div>
               <h2 className="font-display text-white text-4xl md:text-5xl font-bold mb-4">
-                La Laguna
+                {t('laguna.title')}
               </h2>
               <p className="font-display italic text-crystal text-lg md:text-xl mb-6 tracking-wide">
-                4 hectáreas de aguas turquesas
+                {t('laguna.highlight')}
               </p>
               <p className="font-body text-white/90 leading-relaxed text-base md:text-lg max-w-md">
-                El corazón de Blue Lagoon. Una laguna cristalina de 4 hectáreas —
-                la más grande del portafolio Raices Kode — rodeada de playas de
-                arena blanca. Un espejo de agua turquesa donde cada día se siente
-                como vacaciones permanentes.
+                {t('laguna.body')}
               </p>
             </div>
 
