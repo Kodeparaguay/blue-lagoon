@@ -1,1 +1,98 @@
-{"brand":{"name":"Blue Lagoon","slogan":"Momentos Únicos"},"hero":{"title":"Blue Lagoon","cta":"Descubra Blue Lagoon"},"nav":{"proyecto":"Projeto","laguna":"Lagoa","lifestyle":"Lifestyle","deportes":"Esportes","brochure":"Brochure","galeria":"Galeria","ubicacion":"Localização","noticias":"Notícias","abrirMenu":"Abrir menu","cerrarMenu":"Fechar menu"},"proyecto":{"title":"Blue Lagoon","body1":"Uma experiência residencial única onde a natureza, o design e o bem-estar se integram para criar um estilo de vida incomparável.","body2":"Localizado em Pedro Juan Caballero, em uma posição estratégica na fronteira com o Brasil, o Blue Lagoon é um empreendimento residencial premium concebido para quem busca exclusividade, privacidade e um investimento com alto potencial de valorização. Com 86 hectares de desenvolvimento planejado e 493 lotes, o projeto combina uma impressionante lagoa cristalina de 4 hectares, praias de areia branca, infraestrutura de primeira linha e uma seleção de amenities projetadas para elevar cada momento.","stats":["desenvolvimento","lotes","lagoa cristalina","com Brasil"],"masterplan":"Masterplan Blue Lagoon","verCompleto":"Ver Completo"},"laguna":{"title":"A LAGOA","highlight":"4 hectares de água cristalina","body":"O coração de Blue Lagoon. Uma lagoa de águas turquesas rodeada de areia branca, ideal para nadar, praticar esportes aquáticos ou simplesmente relaxar sob o sol."},"lifestyle":{"title":"LIFESTYLE","body":"Blue Lagoon oferece um estilo de vida onde cada dia parece férias. Club House, piscina, solário familiar e espaços projetados para o bem-estar e convivência.","amenities":["Club House","Piscina","Solário Familiar","Áreas de Descanso"]},"deportes":{"title":"ESPORTES","body":"Uma área esportiva completa com quadras de tênis, pádel, futebol e basquete. Espaços projetados para uma vida ativa e saudável.","sports":["Tênis","Pádel","Futebol","Basquete"]},"brochure":{"title":"BROCHURE","body":"Conheça todos os detalhes do Blue Lagoon. Baixe o brochure completo com informações de lotes, amenities e plano diretor.","cta":"Baixar Brochure"},"galeria":{"title":"GALERIA"},"ubicacion":{"title":"LOCALIZAÇÃO","address":"Pedro Juan Caballero, Paraguai","desc":"Na fronteira com o Brasil, uma localização estratégica com alto potencial de valorização."},"noticias":{"title":"NOTÍCIAS","loading":"Carregando notícias...","error":"Não foi possível carregar as notícias.","empty":"Sem notícias neste idioma.","back":"← Voltar","notFound":"Notícia não encontrada","notFoundDesc":"A notícia que você procura não existe ou foi removida."},"footer":{"copyright":"© {{year}} Blue Lagoon. Todos os direitos reservados.","downloadBrochure":"Baixar Brochure"}}
+{
+  "brand": {
+    "name": "Blue Lagoon",
+    "slogan": "Momentos Únicos"
+  },
+  "hero": {
+    "title": "Blue Lagoon",
+    "cta": "Descubra Blue Lagoon"
+  },
+  "nav": {
+    "proyecto": "Projeto",
+    "laguna": "Lagoa",
+    "lifestyle": "Lifestyle",
+    "deportes": "Esportes",
+    "brochure": "Brochure",
+    "galeria": "Galeria",
+    "ubicacion": "Localização",
+    "noticias": "Notícias",
+    "abrirMenu": "Abrir menu",
+    "cerrarMenu": "Fechar menu"
+  },
+  "proyecto": {
+    "title": "Blue Lagoon",
+    "body1": "Uma experiência residencial única onde a natureza, o design e o bem-estar se integram para criar um estilo de vida incomparável.",
+    "body2": "Localizado em Pedro Juan Caballero, em uma posição estratégica na fronteira com o Brasil, o Blue Lagoon é um empreendimento residencial premium concebido para quem busca exclusividade, privacidade e um investimento com alto potencial de valorização. Com 86 hectares de desenvolvimento planejado e 493 lotes, o projeto combina uma impressionante lagoa cristalina de 4 hectares, praias de areia branca, infraestrutura de primeira linha e uma seleção de amenities projetadas para elevar cada momento.",
+    "stats": [
+      "desenvolvimento",
+      "lotes",
+      "lagoa cristalina",
+      "com Brasil"
+    ],
+    "masterplan": "Masterplan Blue Lagoon",
+    "verCompleto": "Ver Completo"
+  },
+  "laguna": {
+    "title": "A LAGOA",
+    "highlight": "4 hectares de água cristalina",
+    "body": "O coração de Blue Lagoon. Uma lagoa de águas turquesas rodeada de areia branca, ideal para nadar, praticar esportes aquáticos ou simplesmente relaxar sob o sol."
+  },
+  "lifestyle": {
+    "title": "LIFESTYLE",
+    "body": "Blue Lagoon oferece um estilo de vida onde cada dia parece férias. Club House, piscina, solário familiar e espaços projetados para o bem-estar e convivência.",
+    "amenities": [
+      "Club House",
+      "Piscina",
+      "Solário Familiar",
+      "Áreas de Descanso"
+    ]
+  },
+  "deportes": {
+    "title": "ESPORTES",
+    "body": "Uma área esportiva completa com quadras de tênis, pádel, futebol e basquete. Espaços projetados para uma vida ativa e saudável.",
+    "sports": [
+      "Tênis",
+      "Pádel",
+      "Futebol",
+      "Basquete"
+    ]
+  },
+  "brochure": {
+    "title": "BROCHURE",
+    "body": "Conheça todos os detalhes do Blue Lagoon. Baixe o brochure completo com informações de lotes, amenities e plano diretor.",
+    "cta": "Baixar Brochure"
+  },
+  "galeria": {
+    "title": "GALERIA"
+  },
+  "ubicacion": {
+    "title": "LOCALIZAÇÃO",
+    "address": "PEDRO JUAN CABALLERO · FRONTEIRA COM BRASIL",
+    "desc": "Na fronteira com o Brasil, uma localização estratégica com alto potencial de valorização.",
+    "cityName": "Pedro Juan Caballero",
+    "cityDesc": "Departamento de Amambay, Paraguai. Uma cidade em pleno crescimento com acesso direto ao Brasil e uma economia dinâmica impulsionada pelo comércio fronteiriço.",
+    "dualNationality": "Dupla Nacionalidade",
+    "dualDesc": "Exatamente na fronteira com Ponta Porã, Brasil. Dois países, dois mercados, infinitas possibilidades.",
+    "badges": [
+      "Localização Estratégica",
+      "Fronteira com Brasil",
+      "Alto Potencial de Valorização"
+    ],
+    "mapOverlay": "Pedro Juan Caballero, Amambay",
+    "mapOverlaySub": "Fronteira com Ponta Porã, Brasil",
+    "mapTitle": "Localização Blue Lagoon"
+  },
+  "noticias": {
+    "title": "NOTÍCIAS",
+    "loading": "Carregando notícias...",
+    "error": "Não foi possível carregar as notícias.",
+    "empty": "Sem notícias neste idioma.",
+    "back": "← Voltar",
+    "notFound": "Notícia não encontrada",
+    "notFoundDesc": "A notícia que você procura não existe ou foi removida."
+  },
+  "footer": {
+    "copyright": "© {{year}} Blue Lagoon. Todos os direitos reservados.",
+    "downloadBrochure": "Baixar Brochure"
+  }
+}
