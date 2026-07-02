@@ -96,7 +96,7 @@ export default function Lifestyle() {
                 const Icon = amenityIcons[i]
                 return (
                   <motion.div
-                    key={amenity.text}
+                    key={amenity}
                     className="relative rounded-2xl p-6 md:p-8 flex items-center gap-5 group cursor-default"
                     variants={cardVariant}
                     whileHover={{ y: -8, scale: 1.02 }}
@@ -141,7 +141,7 @@ export default function Lifestyle() {
 
                     <div className="relative z-10">
                       <span className="font-body text-gray-800 text-base md:text-lg font-medium leading-snug">
-                        {amenity.text}
+                        {amenity}
                       </span>
                     </div>
                   </motion.div>

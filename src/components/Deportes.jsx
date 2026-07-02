@@ -90,7 +90,7 @@ export default function Deportes() {
                 const Icon = sportIcons[i]
                 return (
                   <motion.div
-                    key={sport.text}
+                    key={sport}
                     className="relative rounded-2xl p-6 md:p-8 flex items-center gap-5 group cursor-default"
                     variants={cardVariant}
                     whileHover={{ y: -8, scale: 1.02 }}
@@ -135,7 +135,7 @@ export default function Deportes() {
 
                     <div className="relative z-10">
                       <span className="font-body text-gray-800 text-base md:text-lg font-medium leading-snug">
-                        {sport.text}
+                        {sport}
                       </span>
                     </div>
                   </motion.div>
